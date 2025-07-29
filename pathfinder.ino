@@ -28,7 +28,16 @@ void setup() {
 }
 
 void loop() {
+    if(){
+        //if all buttons pressed at the same time, start game
+    }
     flickerLight();
+    game();
+    flickerLight();
+}
+
+void game(){
+    //game
 }
 
 void flickerLight() {
