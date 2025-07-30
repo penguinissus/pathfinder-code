@@ -7,10 +7,10 @@ int LED2 = 6;
 int LED3 = 7;
 int LED4 = 0;
 
-bool light1 = false;
-bool light2 = false;
-bool light3 = false;
-bool light4 = false;
+bool button1state = false;
+bool button2state = false;
+bool button3state = false;
+bool button4state = false;
     
 void setup() {
     pinMode(BUT1, INPUT_PULLUP);
@@ -39,8 +39,17 @@ void loop() {
     delay(100);
 }
 
+long gameDuration = 60000;
 void game(){
-    //game
+    long gameStartTime = millis();
+    while((currentTime-gameStartTime)<gameDuration){
+        button1state = digitalRead(BUT1);
+        button2state = digitalRead(BUT2);
+        button3state = digitalRead(BUT3);
+        button4state = digitalRead(BUT4);
+        //game code
+        currentTime=millis();
+    }
 }
 
 int flickerInterval = 100;
