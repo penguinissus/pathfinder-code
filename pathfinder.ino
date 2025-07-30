@@ -1,11 +1,11 @@
-int BUT1 = 26;
-int BUT2 = 27;
-int BUT3 = 28;
-int BUT4 = 1;
-int LED1 = 29;
-int LED2 = 6;
-int LED3 = 7;
-int LED4 = 0;
+int BUT1 = 1;
+int BUT2 = 2;
+int BUT3 = 3;
+int BUT4 = 8;
+int LED1 = 4;
+int LED2 = 5;
+int LED3 = 6;
+int LED4 = 7;
 
 bool button1state = false;
 bool button2state = false;
@@ -13,6 +13,7 @@ bool button3state = false;
 bool button4state = false;
 
 int lightOn = 0;
+int score = 0;
     
 void setup() {
     pinMode(BUT1, INPUT_PULLUP);
@@ -81,6 +82,8 @@ void game(){
 void randomLight(){
     //random light on?
     //and change the lightOn variable
+    lightOn = randInt(1,5);
+    switch case
 }
 
 int flickerInterval = 100;
