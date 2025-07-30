@@ -32,8 +32,11 @@ void loop() {
         //if all buttons pressed at the same time, start game
     }
     flickerLight();
+    delay(100);
     game();
+    delay(100);
     flickerLight();
+    delay(100);
 }
 
 void game(){
