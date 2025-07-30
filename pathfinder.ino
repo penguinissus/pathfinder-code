@@ -38,6 +38,7 @@ void loop() {
     button2state = digitalRead(BUT2);
     button3state = digitalRead(BUT3);
     button4state = digitalRead(BUT4);
+    //starts game when all 4 buttons pressed
     if(button1state && button2state && button3state && button4state){
         flickerLight();
         delay(100);
@@ -63,10 +64,13 @@ void showScore(){
 
 //check int vs long storage
 long gameDuration = 60000;
-long lightDuration = 500; //duration tbd
+long lightDuration = 1000;
+long lightOnDuration = 500;
+long prevLight = 0;
+long gameStartTime = 0;
 void game(){
-    long gameStartTime = millis();
-    long prevLight = millis();
+    gameStartTime = millis();
+    prevLight = millis();
     //ideally random light on 500, lights off 500? how to do that
     while((currentTime-gameStartTime)<gameDuration){
         button1state = digitalRead(BUT1);
@@ -75,15 +79,28 @@ void game(){
         button4state = digitalRead(BUT4);
         //game code
         //use the randomLight function
+        if((currentTime-prevLight)>lightOnDuration)
         currentTime=millis();
     }
 }
 
 void randomLight(){
-    //random light on?
-    //and change the lightOn variable
+    lightsOff();
     lightOn = randInt(1,5);
-    switch case
+    switch(lightOn) {
+        case 1:
+            digitalWrite(LED1, HIGH);
+            break;
+        case 2:
+            digitalWrite(LED2, HIGH);
+            break;
+        case 3:
+            digitalWrite(LED3, HIGH);
+            break;
+        case 4:
+            digitalWrite(LED4, HIGH);
+            break;            
+    }
 }
 
 int flickerInterval = 100;
