@@ -22,21 +22,41 @@ void setup() {
     pinMode(LED3, OUTPUT);
     pinMode(LED4, OUTPUT);
 
+    //idk if functions like this would work in setup(), research on that
+    lightsOff();
+
     long startTime = millis();
     int prevTime = millis();
     int currentTime = millis();
 }
 
 void loop() {
-    if(){
+    button1state = digitalRead(BUT1);
+    button2state = digitalRead(BUT2);
+    button3state = digitalRead(BUT3);
+    button4state = digitalRead(BUT4);
+    if(button1state && button2state && button3state && button4state){
         //if all buttons pressed at the same time, start game
+        flickerLight();
+        delay(100);
+        game();
+        delay(100);
+        flickerLight();
+        delay(100);
+        showScore();
+        delay(100);
     }
-    flickerLight();
-    delay(100);
-    game();
-    delay(100);
-    flickerLight();
-    delay(100);
+}
+
+void lightsOff(){
+    digitalWrite(LED1, LOW);
+    digitalWrite(LED2, LOW);
+    digitalWrite(LED3, LOW);
+    digitalWrite(LED4, LOW);
+}
+
+void showScore(){
+    //mabye show score in binary?
 }
 
 long gameDuration = 60000;
@@ -56,10 +76,7 @@ int flickerInterval = 100;
 void flickerLight() {
     prevTime = millis();
     for(int i = 0; i < 12; i++){
-        digitalWrite(LED1, LOW);
-        digitalWrite(LED2, LOW);
-        digitalWrite(LED3, LOW);
-        digitalWrite(LED4, LOW);
+        lightsOff();
         switch((i%4)+1){
             case 1:
                 digitalWrite(LED1, HIGH);
