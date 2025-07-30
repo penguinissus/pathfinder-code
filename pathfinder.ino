@@ -69,18 +69,24 @@ long lightOnDuration = 500;
 long prevLight = 0;
 long gameStartTime = 0;
 void game(){
+    currentTime = millis();
     gameStartTime = millis();
-    prevLight = millis();
-    //ideally random light on 500, lights off 500? how to do that
+    prevLight = -500;
     while((currentTime-gameStartTime)<gameDuration){
         button1state = digitalRead(BUT1);
         button2state = digitalRead(BUT2);
         button3state = digitalRead(BUT3);
         button4state = digitalRead(BUT4);
-        //game code
-        //use the randomLight function
-        if((currentTime-prevLight)>lightOnDuration)
-        currentTime=millis();
+
+        //rethink logic
+        if((currentTime-prevLight)>lightOnDuration){
+            randomLight();
+            prevLight = millis();
+        }
+        if((currentTime-prevLight)>lightDuration){
+            lightsOff();
+            lightOn = 0;
+        }
     }
 }
 
