@@ -11,6 +11,8 @@ bool button1state = false;
 bool button2state = false;
 bool button3state = false;
 bool button4state = false;
+
+int lightOn = 0;
     
 void setup() {
     pinMode(BUT1, INPUT_PULLUP);
@@ -36,7 +38,6 @@ void loop() {
     button3state = digitalRead(BUT3);
     button4state = digitalRead(BUT4);
     if(button1state && button2state && button3state && button4state){
-        //if all buttons pressed at the same time, start game
         flickerLight();
         delay(100);
         game();
@@ -59,17 +60,27 @@ void showScore(){
     //mabye show score in binary?
 }
 
+//check int vs long storage
 long gameDuration = 60000;
+long lightDuration = 500; //duration tbd
 void game(){
     long gameStartTime = millis();
+    long prevLight = millis();
+    //ideally random light on 500, lights off 500? how to do that
     while((currentTime-gameStartTime)<gameDuration){
         button1state = digitalRead(BUT1);
         button2state = digitalRead(BUT2);
         button3state = digitalRead(BUT3);
         button4state = digitalRead(BUT4);
         //game code
+        //use the randomLight function
         currentTime=millis();
     }
+}
+
+void randomLight(){
+    //random light on?
+    //and change the lightOn variable
 }
 
 int flickerInterval = 100;
