@@ -40,30 +40,32 @@ void game(){
     //game
 }
 
+int flickerInterval = 100;
 void flickerLight() {
-    digitalWrite(LED1, LOW);
-    digitalWrite(LED2, LOW);
-    digitalWrite(LED3, LOW);
+    prevTime = millis();
     for(int i = 0; i < 12; i++){
-        switch (i%4) {
-            case 0:
-                digitalWrite(LED1, HIGH);
-                digitalWrite(LED4, LOW);
-                break;
+        digitalWrite(LED1, LOW);
+        digitalWrite(LED2, LOW);
+        digitalWrite(LED3, LOW);
+        digitalWrite(LED4, LOW);
+        switch((i%4)+1){
             case 1:
-                digitalWrite(LED2, HIGH);
-                digitalWrite(LED1, LOW);
+                digitalWrite(LED1, HIGH);
                 break;
             case 2:
-                digitalWrite(LED3, HIGH);
-                digitalWrite(LED2, LOW);
+                digitalWrite(LED2, HIGH);
                 break;
             case 3:
-                digitalWrite(LED4, HIGH);
-                digitalWrite(LED3, LOW);
+                digitalWrite(LED3, HIGH);
                 break;
-            //do i need an else to finish switch case? research    
+            case 4:
+                digitalWrite(LED4, HIGH);
+                break;            
         }
-        delay(100);
+        currentTime = millis();
+        while((currentTime-prevTime)<flickerInterval){
+            currentTime = millis();
+        }
+        prevTime = millis();
     }
 }
