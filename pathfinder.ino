@@ -149,6 +149,7 @@ void randomLight(){
     }
 }
 
+//potentially rewrite with delay to stop potential disturbance from buttons if my other code is bad
 int flickerInterval = 100;
 void flickerLight() {
     prevTime = millis();
