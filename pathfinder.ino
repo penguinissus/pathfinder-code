@@ -41,25 +41,41 @@ void loop() {
     //starts game when all 4 buttons pressed
     if(button1state && button2state && button3state && button4state){
         flickerLight();
-        delay(100);
+        delay(1000);
         game();
-        delay(100);
+        delay(1000);
         flickerLight();
-        delay(100);
+        delay(1000);
         showScore();
-        delay(100);
+        score = 0;
+        delay(1000);
+        flickerLight();
     }
 }
 
-void lightsOff(){
-    digitalWrite(LED1, LOW);
-    digitalWrite(LED2, LOW);
-    digitalWrite(LED3, LOW);
-    digitalWrite(LED4, LOW);
-}
-
 void showScore(){
-    //mabye show score in binary?
+    if(score>9999){
+        for(int i = 0; i<3, i++){
+            digitalWrite(LED1, HIGH);
+            digitalWrite(LED2, HIGH);
+            digitalWrite(LED3, HIGH);
+            digitalWrite(LED4, HIGH);
+            delay(500);
+        lightsOff();
+        delay(150);
+        }
+    } else {
+        while(score!=0){
+            while((score%10)!=0){
+                digitalWrite(LED4, HIGH);
+                delay(200);
+                digitalWrite(LED4, LOW);
+                delay(200);
+                score--;
+            }
+            score/=10;
+        }
+    }
 }
 
 //check int vs long storage
@@ -158,4 +174,11 @@ void flickerLight() {
         }
         prevTime = millis();
     }
+}
+
+void lightsOff(){
+    digitalWrite(LED1, LOW);
+    digitalWrite(LED2, LOW);
+    digitalWrite(LED3, LOW);
+    digitalWrite(LED4, LOW);
 }
