@@ -72,13 +72,15 @@ void game(){
     currentTime = millis();
     gameStartTime = millis();
     prevLight = -500;
+    lightOn = 0;
+    score = 0;
     while((currentTime-gameStartTime)<gameDuration){
         button1state = digitalRead(BUT1);
         button2state = digitalRead(BUT2);
         button3state = digitalRead(BUT3);
         button4state = digitalRead(BUT4);
 
-        //rethink logic
+        //possibly rethink logic
         if((currentTime-prevLight)>lightOnDuration){
             randomLight();
             prevLight = millis();
@@ -86,6 +88,11 @@ void game(){
         if((currentTime-prevLight)>lightDuration){
             lightsOff();
             lightOn = 0;
+        }
+
+        //check buttons pressed
+        if ((button1state && !(button2state || button3state || button4state) && lightOn==1) || (button2state && !(button1state || button3state || button4state) && lightOn = 2) || (button3state && !(button1state || button2state || button4state) && lightOn==3) || (button4state && !(button1state || button2state || button3state) && lightOn==4)){
+            score++;
         }
     }
 }
