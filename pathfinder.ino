@@ -14,7 +14,7 @@ bool button4state = false;
 
 int lightOn = 0;
 int score = 0;
-    
+
 void setup() {
     pinMode(BUT1, INPUT_PULLUP);
     pinMode(BUT2, INPUT_PULLUP);
