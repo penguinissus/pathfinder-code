@@ -64,17 +64,20 @@ void showScore(){
 
 //check int vs long storage
 long gameDuration = 60000;
-long lightDuration = 1000;
 long lightOnDuration = 500;
-long prevLight = 0;
-long gameStartTime = 0;
+unsigned long prevLight = 0;
+unsigned long gameStartTime = 0;
 void game(){
-    currentTime = millis();
     gameStartTime = millis();
     prevLight = -500;
     lightOn = 0;
     score = 0;
+    lightOnDuration = 1000;
+    bool stage1passed = false;
+    bool stage2passed = false;
+    bool stage3passed = false;
     while((currentTime-gameStartTime)<gameDuration){
+        currentTime = millis();
         button1state = digitalRead(BUT1);
         button2state = digitalRead(BUT2);
         button3state = digitalRead(BUT3);
@@ -85,9 +88,23 @@ void game(){
             randomLight();
             prevLight = millis();
         }
-        if((currentTime-prevLight)>lightDuration){
+        if((currentTime-prevLight)>(lightOnDuration*2)){
             lightsOff();
             lightOn = 0;
+        }
+
+        //increasingly fast light speed
+        if((currentTime-gameStartTime>15000) && !stage1passed){
+            lightOnDuration/=2;
+            stage1passed = true;
+        }
+        if((currentTime-gameStartTime>30000) && !stage2passed){
+            lightOnDuration/=2;
+            stage2passed = true;
+        }
+        if((currentTime-gameStartTime>45000) && !stage3passed){
+            lightOnDuration/=2;
+            stage3passed = true;
         }
 
         //check buttons pressed
