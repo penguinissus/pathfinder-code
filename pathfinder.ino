@@ -25,7 +25,6 @@ void setup() {
     pinMode(LED3, OUTPUT);
     pinMode(LED4, OUTPUT);
 
-    //idk if functions like this would work in setup(), research on that
     lightsOff();
 
     long startTime = millis();
@@ -78,9 +77,8 @@ void showScore(){
     }
 }
 
-//check int vs long storage
-long gameDuration = 60000;
-long lightOnDuration = 500;
+int gameDuration = 60000;
+int lightOnDuration = 500;
 unsigned long prevLight = 0;
 unsigned long gameStartTime = 0;
 void game(){
@@ -99,7 +97,6 @@ void game(){
         button3state = digitalRead(BUT3);
         button4state = digitalRead(BUT4);
 
-        //possibly rethink logic
         if((currentTime-prevLight)>lightOnDuration){
             randomLight();
             prevLight = millis();
@@ -149,7 +146,6 @@ void randomLight(){
     }
 }
 
-//potentially rewrite with delay to stop potential disturbance from buttons if my other code is bad
 int flickerInterval = 100;
 void flickerLight() {
     for(int i = 0; i < 12; i++){
