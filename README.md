@@ -18,3 +18,13 @@ PCB back image
 4 LEDs  
 4 220 ohm resistors  
 4 buttons
+
+# Struggles and what I learnt
+1. Figuring out what XIAO RP2040 is  
+    I've only worked with Arduino before but figured that it was kinda similar  
+2. Forgot the structure of arduino programming language  
+    I had to revisit some past projects
+3. Figuring out how to code with millis()  
+    It took some time but I figured it out  
+4. How to put 3D models into KiCad  
+    honestly never knew this was a thing
