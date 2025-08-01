@@ -6,11 +6,11 @@ Each light represents a digit of the number, and each blink is a +1 on that digi
 
 # Images:  
 Schematic diagram  
-![schematic diagram](schematic.png)
+![schematic diagram](schematic.png)  
 PCB front image  
 ![pcb front](pcb-front.png)  
-PCB back image
-![pcb back](pcb-back.png)
+PCB back image  
+![pcb back](pcb-back.png)  
 
 # Bill of Materials:  
 1 XIAO RP2040  
