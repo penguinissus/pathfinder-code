@@ -152,7 +152,6 @@ void randomLight(){
 //potentially rewrite with delay to stop potential disturbance from buttons if my other code is bad
 int flickerInterval = 100;
 void flickerLight() {
-    prevTime = millis();
     for(int i = 0; i < 12; i++){
         lightsOff();
         switch((i%4)+1){
@@ -169,11 +168,7 @@ void flickerLight() {
                 digitalWrite(LED4, HIGH);
                 break;            
         }
-        currentTime = millis();
-        while((currentTime-prevTime)<flickerInterval){
-            currentTime = millis();
-        }
-        prevTime = millis();
+        delay(100);
     }
 }
 
